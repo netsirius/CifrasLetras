@@ -30,7 +30,7 @@ public class CifrasLetras {
     public CifrasLetras(int numCifras) {
         this.meta = numk();
         this.lista = generarCifras(numCifras);
-        this.N = lista.length;
+        this.N = numCifras;
         this.nodosTotales = -1;
         this.nodosVisitados = -1;
         this.exito = false;
