@@ -27,17 +27,22 @@ public class Generador {
         this.pilaCombinaciones = new Stack();
     }
     
-    public Combinacion[] generar(){
+    public Combinacion[] generar() throws Exception{
         combinar();
         
         return combinaciones;
     }
-    private void combinar(){
+    private void combinar() throws Exception{
+        int nextInstruction = 1;
+        
         for (int i = 0; i < n; i++) {
             pila.add(i);
         }
         saveState();
-        combine();
+        
+        while(nextInstruction != -1){
+            nextInstruction = execute(nextInstruction);
+        }
         
         combinaciones = new Combinacion[pilaCombinaciones.size()];
         int i = 0;
@@ -45,7 +50,7 @@ public class Generador {
             combinaciones[i++] = pilaCombinaciones.pop();
         }
     }
-    private void prepare(){
+    private int prepare(){
         Integer i;
         
         pila.pop();
@@ -61,13 +66,15 @@ public class Generador {
                     pila.push(i);
                 }
                 saveState();
-                combine();
+                return 1;
             } else {
-                prepare();
+                return 0;
             }
         }
+        
+        return -1;
     }  
-    private void combine(){
+    private int combine(){
         Integer i;
         
         i = pila.peek();
@@ -77,7 +84,7 @@ public class Generador {
             pila.push(i);
             saveState();
         }
-        prepare();
+        return 0;
     }   
     private void saveState(){
         Integer[] combinacion = new Integer[n];
@@ -85,7 +92,17 @@ public class Generador {
         for (int i = 0; i < pila.size(); i++) {
            combinacion[i] = elementos[pila.get(i)];
         }
-        System.out.println(pilaCombinaciones.size());
         pilaCombinaciones.push(new Combinacion(combinacion));
+    }
+    
+    private int execute(int instruction) throws Exception{
+        switch(instruction){
+            case 0:
+                return prepare();
+            case 1:
+                return combine();
+            default:
+                throw new Exception("Unknown error");
+        }
     }
 }
