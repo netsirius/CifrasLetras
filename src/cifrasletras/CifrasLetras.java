@@ -5,6 +5,8 @@
  */
 package cifrasletras;
 
+import combinaciones.Combinacion;
+import combinaciones.Generador;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -40,7 +42,7 @@ public class CifrasLetras {
         this.exito = false;
     }
     
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+    public static void main(String[] args) throws FileNotFoundException, IOException, Exception {
         
 //        cambiarMejor(lista[0],camino);
 //        
@@ -50,7 +52,12 @@ public class CifrasLetras {
 //            exito = true;
 //        }
 
-        
+//        Combinacion[] combinaciones = new Generador(3, 2).generar();
+//        Character[] word = new Character[]{'a','b','c'};
+//        
+//        for (Combinacion combinacion : combinaciones) {
+//            System.out.println(Arrays.toString(combinacion.convertir(word)));
+//        }
         
     }
     /**

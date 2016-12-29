@@ -10,20 +10,18 @@ import java.util.Stack;
  * @author Javier Triviño
  */
 public class Generador {
-    private Integer[] elementos;
     private Combinacion[] combinaciones;
     private Stack<Combinacion> pilaCombinaciones;
     private Stack<Integer> pila;
     private int k, n;
 
-    public Generador(Integer[] elementos, int n) throws Exception {
-        if(elementos.length < n) throw new Exception("El tamaño de la lista debe ser más grande o igual que n. (k="+elementos.length+", n="+n);
-      
-        this.k = elementos.length-1;
+    public Generador(int k, int n) throws Exception {
+        if(k < n) throw new Exception("El tamaño de la lista debe ser más grande o igual que n. (k="+k+", n="+n);
+        
+        this.k = k-1; // Corrección
         this.n = n;
         
         this.pila = new Stack<>();
-        this.elementos = elementos;
         this.pilaCombinaciones = new Stack();
     }
     
@@ -90,7 +88,7 @@ public class Generador {
         Integer[] combinacion = new Integer[n];
         
         for (int i = 0; i < pila.size(); i++) {
-           combinacion[i] = elementos[pila.get(i)];
+           combinacion[i] = pila.get(i);
         }
         pilaCombinaciones.push(new Combinacion(combinacion));
     }
