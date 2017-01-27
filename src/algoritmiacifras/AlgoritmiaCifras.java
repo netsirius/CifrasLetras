@@ -55,8 +55,6 @@ public class AlgoritmiaCifras {
         
         // resolvemos recursivamente tofas las posibilidades
         boolean resuelto = resuelve_rec(meta, numeros.size());
-        
-        normalizaOperaciones();
         return resuelto;
     }
     
@@ -169,17 +167,6 @@ public class AlgoritmiaCifras {
             todos = encontrado.get(i);
         }
         return todos;
-    }
-    
-    private void normalizaOperaciones(){
-        int size = mejorOperaciones.size();
-        int posEscribir = size-2;
-        if (posEscribir >=0) {
-            buscaOperandos(mejorOperaciones.get(size-1), posEscribir);
-            for (int i = 0; i < posEscribir+1; i++) {
-                mejorOperaciones.remove(i);
-            }
-        }
     }
     
     private void buscaOperandos(Operar unaCuenta, int posEscribir){
