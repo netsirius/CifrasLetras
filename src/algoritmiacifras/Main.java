@@ -15,16 +15,17 @@ import java.util.Random;
  */
 public class Main {
     
-    private static final int N = 10;
+    private static final int N = 20;
     private static final Random r = new Random();
     public static void main(String[] args) {
         ArrayList<Integer> numeros = generarCifras(N);
+        ArrayList<Integer> nums = (ArrayList<Integer>) numeros.clone();
         int meta = numk();
         AlgoritmiaCifras cifras = new AlgoritmiaCifras(meta,numeros);
         System.out.println("META: " + meta);
         if (cifras.resuelve(meta)) System.out.println("Solución: ");
         else System.out.println("Aproximación: ");
-        System.out.println(numeros);
+        System.out.println(nums);
         cifras.escribeOperaciones();
         
     }

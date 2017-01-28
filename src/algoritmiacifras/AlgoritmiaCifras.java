@@ -38,7 +38,11 @@ public class AlgoritmiaCifras {
             return this.op;
         }
     }
-
+    /**
+     * Constructor de la clase, donde inicializamos todas las variables necesarias.
+     * @param meta (La meta a la que queremos llegar mediante ciertas operaciones con los números)
+     * @param numeros (La lista de números)
+    */
     public AlgoritmiaCifras(int meta,ArrayList<Integer> numeros) {
         this.meta = meta;
         this.numeros = numeros;
@@ -51,26 +55,38 @@ public class AlgoritmiaCifras {
         marcar(0);
     }
     
-    public boolean resuelve(int meta){
-        
+    /**
+     * Devolvemos true si hemos encontrado la solución exacta, en caso conbtrario solo hemos podido aproximarnos y devolvemos false.
+     * @param meta
+     * @return 
+     */
+    public boolean resuelve(int meta){  
         // resolvemos recursivamente tofas las posibilidades
         boolean resuelto = resuelve_rec(meta, numeros.size());
         return resuelto;
     }
     
+    /**
+     * Función recursiva, mediante backtracking, vamos llamando recursivamente al método creando en cada iteración una operación nueva. 
+     * Por cada operación generada se va comprobando si es válida y si se hacerca mas al resultado. 
+     * Las operaciones se van guardando para ser mostradas al llegar a un resultado.
+     * @param meta
+     * @param size
+     * @return 
+     */
     private boolean resuelve_rec(int meta, int size){
         
         Operar opActual;
         
         if (size < 2) return false;
-        //Cojemos el primer número disponinle
+        //Cogemos el primer número disponinle
         for (int i = 0; i < size-1; i++) {
             int a = numeros.get(i);
             if (a !=0) {
                 numeros.set(i, numeros.get(size-1));
             } else continue;
             
-            //Cojemos el segundo número dispoible
+            //Cogemos el segundo número dispoible
             for (int j = i; j < size-1; j++) {
                 int b = numeros.get(j);
                 if (b != 0) {
@@ -134,13 +150,20 @@ public class AlgoritmiaCifras {
         return false;
         
     }
-    
+    /**
+     * Mostramos la operación por consola
+     */
     public void escribeOperaciones(){
         for (Operar it : mejorOperaciones) {
             System.out.println("Operación: " + it.getOp1() + it.getOperador() + it.getOp2() + " = " + it.getResultado());
         }
     }
     
+    /**
+     * Marca como encontrado el número n.
+     * @param n Número a marcar
+     * @return Verdadero si ha encontrado todos
+     */
     private boolean marcar(int n) {
         if (n<1000 && !encontrado.get(n)) {
             encontrado.set(n, true);
@@ -151,54 +174,15 @@ public class AlgoritmiaCifras {
         }
         return false;
     }
+
     
-    public void imprimeRestantes(){
-        for (int i = 0; i < BUSCADOS; i++) {
-            if (!encontrado.get(i)){
-                System.out.print(i + " ");
-            }
-        }
-        System.out.println("");
-    }
-    
-    public boolean todosMarcados(){
-        boolean todos = true;
-        for (int i=0; i<BUSCADOS && todos; ++i){
-            todos = encontrado.get(i);
-        }
-        return todos;
-    }
-    
-    private void buscaOperandos(Operar unaCuenta, int posEscribir){
-        boolean unoEncontrado = false,otroEncontrado = false;
-        int j = posEscribir;
-        int unOperando = unaCuenta.getOp1(), otroOperando = unaCuenta.getOp2();
-        
-        while ((!unoEncontrado || !otroEncontrado) && j>=0) {            
-            if ((mejorOperaciones.get(j).getResultado() == unOperando) ||
-                (mejorOperaciones.get(j).getResultado()==otroOperando)) {
-                
-                if (unoEncontrado) {
-                    otroEncontrado = true;
-                }else{
-                    unoEncontrado = true;
-                }
-                
-                Operar aux = new Operar(mejorOperaciones.get(j));
-                mejorOperaciones.set(j, mejorOperaciones.get(posEscribir));
-                mejorOperaciones.set(posEscribir, aux);
-                posEscribir--;
-                
-                buscaOperandos(mejorOperaciones.get(posEscribir+1),posEscribir);
-                j = posEscribir;
-                
-            }else{
-                j--;
-            }
-        }
-        
-    }
-    
+    /**
+     * Calculamos a (op) b
+     * @param op
+     * @param a
+     * @param b
+     * @return 
+     */
     private int calcula(int op,int a, int b){
         
         switch (op) {
