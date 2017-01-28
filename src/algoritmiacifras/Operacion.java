@@ -27,12 +27,4 @@ public class Operacion {
         return b;
     }
     
-    private void calcula(int op,int op1, int op2){
-        
-    }
-    
-    private void esPosible(int op1, int op2){
-        
-    }
-    
 }
