@@ -14,7 +14,7 @@ public class Operar {
     private int op2;
     private char operador;
     private int resultado;
-
+    
     public Operar(int op1, int op2, char operador, int resultado) {
         this.op1 = op1;
         this.op2 = op2;
@@ -60,6 +60,5 @@ public class Operar {
     public void setResultado(int resultado) {
         this.resultado = resultado;
     }
-    
-    
+      
 }
