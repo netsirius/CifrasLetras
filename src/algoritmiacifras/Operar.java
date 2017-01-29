@@ -21,13 +21,6 @@ public class Operar {
         this.operador = operador;
         this.resultado = resultado;
     }
-    
-    public Operar(Operar op) {
-        this.op1 = op.getOp1();
-        this.op2 = op.getOp2();
-        this.operador = op.getOperador();
-        this.resultado = op.getResultado();
-    }
 
     public int getOp1() {
         return op1;

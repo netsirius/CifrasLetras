@@ -13,12 +13,10 @@ import java.util.ArrayList;
  */
 public class AlgoritmiaCifras {
     
-    private final int BUSCADOS = 1000;
     private ArrayList<Integer> numeros = new ArrayList<>();; 
     private ArrayList<Operar> operaciones = new ArrayList<>();
     private ArrayList<Operar> mejorOperaciones = new ArrayList<>();
-    private ArrayList<Boolean> encontrado = new ArrayList<>();
-    private int meta, totalEncontrados,mejor;
+    private int meta,mejor;
     private String ops;
     private enum Operaciones{
         SUM(0),
@@ -44,10 +42,6 @@ public class AlgoritmiaCifras {
     public AlgoritmiaCifras(int meta,ArrayList<Integer> numeros) {
         this.meta = meta;
         this.numeros = numeros;
-        for (int i = 0; i < BUSCADOS; i++) {
-            encontrado.add(Boolean.FALSE);
-        }
-        this.totalEncontrados = 0;
         this.mejor = -1;
         this.ops = "+-*/";
     }
