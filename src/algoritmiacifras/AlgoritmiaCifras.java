@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class AlgoritmiaCifras {
     
     private ArrayList<Integer> numeros = new ArrayList<>();; 
-    private ArrayList<Operar> operaciones = new ArrayList<>();
-    private ArrayList<Operar> mejorOperaciones = new ArrayList<>();
+    private ArrayList<Operacion> operaciones = new ArrayList<>();
+    private ArrayList<Operacion> mejorOperaciones = new ArrayList<>();
     private int meta,mejor;
     private String ops;
     private enum Operaciones{
@@ -67,7 +67,7 @@ public class AlgoritmiaCifras {
      */
     private boolean cifrasBacktracking(int meta, int size){
         
-        Operar opActual;
+        Operacion opActual;
         
         if (size < 2) return false;
         //Cogemos el primer número disponinle
@@ -105,13 +105,13 @@ public class AlgoritmiaCifras {
                     }
                     
                     //Calculamos y guardamos la operación
-                    opActual = new Operar(c, d, ops.charAt(op), resultado);
+                    opActual = new Operacion(c, d, ops.charAt(op), resultado);
                     operaciones.add(opActual);
                     
                     //Intentamos resolver o mejorar el nuevo número, sin pasarnos
                     if (Math.abs(meta-resultado) < Math.abs(meta-mejor)) {
                         mejor = resultado;
-                        mejorOperaciones = (ArrayList<Operar>) operaciones.clone();
+                        mejorOperaciones = (ArrayList<Operacion>) operaciones.clone();
                         
                         if (resultado == meta) {
                             return true;
@@ -140,7 +140,7 @@ public class AlgoritmiaCifras {
      * Mostramos la operación por consola
      */
     public void escribeOperaciones(){
-        for (Operar it : mejorOperaciones) {
+        for (Operacion it : mejorOperaciones) {
             System.out.println("Operación: " + it.getOp1() + it.getOperador() + it.getOp2() + " = " + it.getResultado());
         }
     }
