@@ -6,8 +6,6 @@
 package algoritmiacifras;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
 
 /**
  *
@@ -59,9 +57,9 @@ public class AlgoritmiaCifras {
      * @param meta
      * @return 
      */
-    public boolean resuelve(int meta){  
+    public boolean cifras(int meta){  
         // resolvemos recursivamente tofas las posibilidades
-        boolean resuelto = resuelve_rec(meta, numeros.size());
+        boolean resuelto = cifrasBacktracking(meta, numeros.size());
         return resuelto;
     }
     
@@ -73,7 +71,7 @@ public class AlgoritmiaCifras {
      * @param size
      * @return 
      */
-    private boolean resuelve_rec(int meta, int size){
+    private boolean cifrasBacktracking(int meta, int size){
         
         Operar opActual;
         
@@ -128,7 +126,7 @@ public class AlgoritmiaCifras {
                     
                     // Guardamos el nuevo resultado y siguimos buscando
                     numeros.set(size-2, resultado);
-                    if (resuelve_rec(meta, size-1)) {
+                    if (cifrasBacktracking(meta, size-1)) {
                         return true;
                     }
                     

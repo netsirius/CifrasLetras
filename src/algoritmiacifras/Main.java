@@ -15,7 +15,7 @@ import java.util.Random;
  */
 public class Main {
     
-    private static final int N = 20;
+    private static final int N = 10;
     private static final Random r = new Random();
     public static void main(String[] args) {
         ArrayList<Integer> numeros = generarCifras(N);
@@ -25,7 +25,7 @@ public class Main {
         System.out.println("META: " + meta);
         System.out.println("NUMEROS: ");
         System.out.println(nums);
-        if (cifras.resuelve(meta)) System.out.println("Solución: ");
+        if (cifras.cifras(meta)) System.out.println("Solución: ");
         else System.out.println("Aproximación: ");
         cifras.escribeOperaciones();
         
