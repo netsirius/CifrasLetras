@@ -23,9 +23,10 @@ public class Main {
         int meta = numk();
         AlgoritmiaCifras cifras = new AlgoritmiaCifras(meta,numeros);
         System.out.println("META: " + meta);
+        System.out.println("NUMEROS: ");
+        System.out.println(nums);
         if (cifras.resuelve(meta)) System.out.println("Solución: ");
         else System.out.println("Aproximación: ");
-        System.out.println(nums);
         cifras.escribeOperaciones();
         
     }

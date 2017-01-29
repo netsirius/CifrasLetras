@@ -52,7 +52,6 @@ public class AlgoritmiaCifras {
         this.totalEncontrados = 0;
         this.mejor = -1;
         this.ops = "+-*/";
-        marcar(0);
     }
     
     /**
@@ -127,11 +126,6 @@ public class AlgoritmiaCifras {
                         }
                     }
                     
-                    // Marcamos el nuevo resultado y compruebamos si están todos marcados
-                    if (marcar(resultado)) {
-                        return true;
-                    }
-                    
                     // Guardamos el nuevo resultado y siguimos buscando
                     numeros.set(size-2, resultado);
                     if (resuelve_rec(meta, size-1)) {
@@ -158,23 +152,6 @@ public class AlgoritmiaCifras {
             System.out.println("Operación: " + it.getOp1() + it.getOperador() + it.getOp2() + " = " + it.getResultado());
         }
     }
-    
-    /**
-     * Marca como encontrado el número n.
-     * @param n Número a marcar
-     * @return Verdadero si ha encontrado todos
-     */
-    private boolean marcar(int n) {
-        if (n<1000 && !encontrado.get(n)) {
-            encontrado.set(n, true);
-            totalEncontrados--;
-            if (totalEncontrados == BUSCADOS) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     
     /**
      * Calculamos a (op) b
